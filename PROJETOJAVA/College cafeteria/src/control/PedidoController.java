@@ -42,6 +42,7 @@ public class PedidoController {
         }
 
         System.out.println("Produto selecionado: " + produtoSelecionado.getDescricao());
+        System.out.println("Preço: " + produtoSelecionado.getPreco());
         System.out.println("Digite a quantidade desejada: ");
         int quantidade = scanner.nextInt();
 

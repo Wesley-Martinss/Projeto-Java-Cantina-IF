@@ -12,26 +12,53 @@ import model.Produtos;
 import java.util.Scanner;
 import view.EstoqueCardapio;
 
-
-public class Main {
+public class Main implements MostrarMenu, Cardapio, ListarEstoque {
     static final int OPCAO_ABRIR_CANTINA = 1;
     static final int OPCAO_EXIBIR_CARDAPIO = 2;
     static final int OPCAO_FAZER_PEDIDO = 3;
+    static final int OPCAO_EMITIR_COMPROVANTE = 4;
+    static final int OPCAO_SAIR = 0;
+
+    // menu definido na interface
+    @Override
+    public void menu() {
+        System.out.println("Escolha uma opção para continuar");
+        System.out.println("[1] Abrir Cantina");
+        System.out.println("[2] Exibir Cardapio");
+        System.err.println("[3] Fazer pedido");
+        System.out.println("[4] Emitir Comprovante");
+        System.out.println("[0] Sair");
+
+    }
+
+    public void MostrarEstoque() {
+
+    }
+
+    public void Cardapio() {
+
+    }
+
+    public void MostrarCompras() {
+
+    }
 
     public static void main(String[] args) {
+        // Criando Arraylist do tipo Produtos com nome produtos
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
+        int opcao = 0;
 
-        int opcao;
+        // Fazendo instancia de do main para acessar o menu
+        Main main = new Main();
 
+        System.out.println("--- Bem vindo a Cantina IFSP ---");
         while (true) {
-            System.out.println("Escolha uma opção para continuar:");
-            System.out.println("[1] Abrir Cantina");
-            System.out.println("[2] Exibir Cardápio");
-            System.out.println("[3] Fazer Pedido");
-
+            main.menu();
             opcao = scanner.nextInt();
+            // consumir a linha em branco que fica no buffer
+            scanner.nextLine();
 
             switch (opcao) {
                 case OPCAO_ABRIR_CANTINA:
@@ -61,4 +88,3 @@ public class Main {
         }
     }
 }
-
