@@ -8,6 +8,8 @@ import control.PedidoController;
 import interfaces.Cardapio;
 import interfaces.ListarEstoque;
 import interfaces.MostrarMenu;
+import model.Administrativo;
+import model.Atendente;
 import model.Produtos;
 import java.util.Scanner;
 import view.EstoqueCardapio;
@@ -48,6 +50,11 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
+        Administrativo adm = new Administrativo("Wesley", 6000, 1);
+        Administrativo adm2 = new Administrativo("Jonas", 6000, 2);
+        Atendente a1 = new Atendente("Lourdes", 2000, 3);
+        Atendente a2 = new Atendente("Maria", 2000, 4);
+
         int opcao = 0;
 
         // Fazendo instancia de do main para acessar o menu
@@ -68,6 +75,8 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                 condicao = scanner.nextLine();
                 if (Would.equalsIgnoreCase(condicao)) {
                     System.out.println("Digite seu id Funcionario:");
+                    int IDADM = scanner.nextInt();
+                    
                 } else {
                     System.out.println("Somente Funcionarios podem abrir a cantina");
                 }
@@ -80,7 +89,8 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                 case OPCAO_FAZER_PEDIDO:
                     pedidoController.fazerPedido();
                     break;
-
+                case OPCAO_SAIR:
+                    break;
                 default:
                     System.out.println("Opção inválida!");
                     break;
