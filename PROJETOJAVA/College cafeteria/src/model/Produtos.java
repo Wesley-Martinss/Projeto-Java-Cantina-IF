@@ -4,11 +4,13 @@ public class Produtos {
     private int id;
     private String descricao;
     private double preco;
+    private int estoque;
 
-    public Produtos(int id, String descricao, double preco) {
+    public Produtos(int id, String descricao, double preco, int estoque) {
         this.id = id;
         this.descricao = descricao;
         this.preco = preco;
+        this.estoque = estoque;
     }
 
     // get retorna
@@ -37,6 +39,20 @@ public class Produtos {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public int getEstoque(int estoque) {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "ID produto: " +id+ "\nDescricão: " +descricao+ "\nPreço: " + preco +"$"  + "\nEstoque: " + estoque;
     }
 
 }
