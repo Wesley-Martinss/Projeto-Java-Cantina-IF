@@ -36,6 +36,12 @@ public class Alunos {
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "Alunio: " + nome + "\nRA(REGISTRO ALUNO): " + ra;
+    }
     
 
 }

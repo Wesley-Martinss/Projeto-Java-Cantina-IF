@@ -1,7 +1,6 @@
 package model.Clientes;
 
 import java.util.ArrayList;
-import model.Clientes.Alunos;
 
 public class ViewAluno {
     // Criando a lista de alunos

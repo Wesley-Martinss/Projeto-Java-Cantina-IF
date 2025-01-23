@@ -1,9 +1,7 @@
 package view;
 
-import control.CardapioController;
 //Importando as classes e as interfaces
-import control.FuncionariosController;
-import control.PagamentoController;
+
 import control.PedidoController;
 import control.MenuControll;
 import interfaces.Cardapio;
@@ -13,9 +11,6 @@ import model.Administrativo;
 import model.Atendente;
 import model.Funcionarios;
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Main implements MostrarMenu, Cardapio, ListarEstoque {
@@ -56,6 +51,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
+       //Instanciando o controle do menu 
         MenuControll menuControll = new MenuControll();
 
         // Funcionarios
@@ -75,8 +71,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
 
         // Variaveis globais
         int opcao = 0;
-        boolean AberturaCantina = false;
-        
+
 
         System.out.println("--- Bem vindo a Cantina IFSP ---");
         while (true) {
