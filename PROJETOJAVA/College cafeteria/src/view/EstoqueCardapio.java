@@ -5,7 +5,7 @@ import interfaces.ListarEstoque;
 import model.Produtos;
 
 public class EstoqueCardapio implements ListarEstoque {
-    private ArrayList<Produtos> produtos; // Lista de produtos
+    public static ArrayList<Produtos> produtos; // Lista de produtos
 
     // Construtor para inicializar a lista de produtos
     public EstoqueCardapio() {
