@@ -1,13 +1,14 @@
 package model.Clientes;
 
-public class Alunos {
+public class Aluno {
     private int ra;
     private String nome;
     private double saldo;
 
-    public Alunos(int ra, String nome, double saldo) {
+    public Aluno(int ra, String nome, double saldo) {
         this.ra = ra;
         this.nome = nome;
+        this.saldo = saldo;
     }
 
     // get retorna
@@ -40,7 +41,7 @@ public class Alunos {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return "Alunio: " + nome + "\nRA(REGISTRO ALUNO): " + ra;
+        return "Alunio: " + nome + "\nRA(REGISTRO ALUNO): " + ra  + "\nSaldo Aluno: " + saldo;
     }
     
 

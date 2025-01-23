@@ -10,6 +10,7 @@ import interfaces.MostrarMenu;
 import model.Administrativo;
 import model.Atendente;
 import model.Funcionarios;
+import model.Clientes.ViewAluno;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
     static final int OPCAO_EXIBIR_CARDAPIO = 2;
     static final int OPCAO_FAZER_PEDIDO = 3;
     static final int OPCAO_EMITIR_COMPROVANTE = 4;
+    static final int OPCAO_EXIBIR_ALUNOS = 5;
     static final int OPCAO_SAIR = 0;
 
     // menu definido na interface
@@ -28,6 +30,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         System.out.println("[2] Exibir Cardapio");
         System.err.println("[3] Fazer pedido");
         System.out.println("[4] Emitir Comprovante");
+        System.out.println("[5] Exibir Alunos com conta na cantina");
         System.out.println("[0] Sair");
 
     }
@@ -51,8 +54,9 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
-       //Instanciando o controle do menu 
+        // Instanciando o controle do menu
         MenuControll menuControll = new MenuControll();
+        ViewAluno viewAluno = new ViewAluno();
 
         // Funcionarios
         Administrativo adm = new Administrativo("Wesley", 6000, 1, "ADM");
@@ -72,7 +76,6 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         // Variaveis globais
         int opcao = 0;
 
-
         System.out.println("--- Bem vindo a Cantina IFSP ---");
         while (true) {
             main.menu();
@@ -81,7 +84,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
             // consumir a linha em branco que fica no buffer
             scanner.nextLine();
             do {
-                switch (opcao) {            
+                switch (opcao) {
                     case OPCAO_ABRIR_CANTINA:
                         menuControll.abrirCantina(scanner, funcionarios);
                         break;
@@ -90,6 +93,9 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                         break;
                     case OPCAO_FAZER_PEDIDO:
                         pedidoController.fazerPedido();
+                        break;
+                    case OPCAO_EXIBIR_ALUNOS:
+                        viewAluno.exibirAlunos();
                         break;
                     case OPCAO_SAIR:
                         System.out.println("Saindo...");
