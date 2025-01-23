@@ -1,19 +1,18 @@
 package view;
 
+import control.CardapioController;
 //Importando as classes e as interfaces
 import control.FuncionariosController;
 import control.PagamentoController;
 import control.PedidoController;
+import control.MenuControll;
 import interfaces.Cardapio;
 import interfaces.ListarEstoque;
 import interfaces.MostrarMenu;
 import model.Administrativo;
 import model.Atendente;
 import model.Funcionarios;
-import model.Produtos;
 import java.util.Scanner;
-import view.EstoqueCardapio;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -57,6 +56,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
+        MenuControll menuControll = new MenuControll();
 
         // Funcionarios
         Administrativo adm = new Administrativo("Wesley", 6000, 1, "ADM");
@@ -88,60 +88,11 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
             do {
                 switch (opcao) {            
                     case OPCAO_ABRIR_CANTINA:
-                    //verificando se cantina já está aberta
-                    if(AberturaCantina == true){
-                        System.out.println("Cantina já esta aberta.");
-                        break;
-
-                    }
-                        String condicao;
-                        //ID DO FUNCIONARIO
-                        int IDADM = 0;
-                        //Confirmando se a pessoa é funcionario
-                        System.out.println("Você é Atendente ou Administrativo? [sim] ou [não]");
-                        condicao = scanner.nextLine();
-                        // Verificar se o ID corresponde a algum funcionário
-                        boolean encontrado = false;
-
-                        if ("sim".equalsIgnoreCase(condicao)) {
-                            System.out.println("Digite seu ID de Funcionário:");
-                            IDADM = scanner.nextInt();
-
-                            // Percorrer a lista de funcionários
-                            for (Funcionarios func : funcionarios) {
-                                if (IDADM == func.getID()) { // Certifique-se de que o método é getId() ou o método
-                                                             // correto
-                                    // Funcionário encontrado, exibe informações
-                                    System.out.println();
-                                    System.out.println("Funcionário encontrado: " + func);
-                                    System.out.println();
-
-                                    // Exibindo data e hora formatada
-                                    LocalDate hoje = LocalDate.now();
-                                    LocalTime agora = LocalTime.now();
-                                    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-                                    String horaFormatada = agora.format(formatoHora);
-
-                                    System.out.println("Cantina aberta hoje, dia: " + hoje + " Hora: " + horaFormatada);
-                                    AberturaCantina = true;
-
-                                    // Marca como encontrado e sai do loop
-                                    encontrado = true;
-                                    break; // Aqui sai do loop imediatamente após encontrar o funcionário
-                                }
-                                // Se não encontrou o funcionário, exibe a mensagem
-                                else if (!encontrado) {
-                                    System.out.println("Funcionário não encontrado com o ID informado.");
-                                    System.out.println("Somente Funcionários podem abrir a cantina.");
-                                    break;
-                                }
-                            }
-                        }
+                        menuControll.abrirCantina(scanner, funcionarios);
                         break;
                     case OPCAO_EXIBIR_CARDAPIO:
                         estoqueCardapio.MostrarEstoque();
                         break;
-
                     case OPCAO_FAZER_PEDIDO:
                         pedidoController.fazerPedido();
                         break;
@@ -154,6 +105,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                 }
             } while (opcao == 0);
         }
+
     }
 
 }
