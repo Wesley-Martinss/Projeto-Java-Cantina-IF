@@ -11,6 +11,10 @@ import view.EstoqueCardapio;
 
 public class PedidoController {
     private EstoqueCardapio estoqueCardapio;
+    // Fazendo instancia de MenuControll
+    MenuControll menuControll = new MenuControll();
+
+    Scanner scanner = new Scanner(System.in);
 
     // Construtor para receber o estoque
     public PedidoController(EstoqueCardapio estoqueCardapio) {
@@ -19,7 +23,12 @@ public class PedidoController {
 
     // Método para fazer o pedido
     public void fazerPedido() {
-        Scanner scanner = new Scanner(System.in);
+        // Verificando se a cantina está aberta antes de permitir fazer o pedido
+        if (!menuControll.AberturaCantina) {
+            System.out.println("Cantina fechada. Espere abrir para fazer o pedido.");
+            return;
+        }
+        // fazendo compra baseado no aluno cadastrado
 
         // Mostra o estoque antes do pedido
         estoqueCardapio.MostrarEstoque();
@@ -42,6 +51,7 @@ public class PedidoController {
         }
 
         System.out.println("Produto selecionado: " + produtoSelecionado.getDescricao());
+        System.out.println("Preço: " + produtoSelecionado.getPreco());
         System.out.println("Digite a quantidade desejada: ");
         int quantidade = scanner.nextInt();
 
@@ -55,4 +65,3 @@ public class PedidoController {
         }
     }
 }
-

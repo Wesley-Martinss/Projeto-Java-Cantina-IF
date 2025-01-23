@@ -1,11 +1,12 @@
 package view;
 
 import java.util.ArrayList;
+
 import interfaces.ListarEstoque;
 import model.Produtos;
 
 public class EstoqueCardapio implements ListarEstoque {
-    private ArrayList<Produtos> produtos; // Lista de produtos
+    public static ArrayList<Produtos> produtos; // Lista de produtos
 
     // Construtor para inicializar a lista de produtos
     public EstoqueCardapio() {
@@ -21,6 +22,7 @@ public class EstoqueCardapio implements ListarEstoque {
         produtos.add(new Produtos(9, "Refrigerante Lata", 3.50, 18));
         produtos.add(new Produtos(10, "Salgado de Queijo", 2.80, 10));
     }
+
 
     @Override
     public void MostrarEstoque() {
