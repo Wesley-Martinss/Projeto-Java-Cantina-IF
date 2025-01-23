@@ -1,16 +1,16 @@
 package view;
 
 //Importando as classes e as interfaces
-
+import model.Clientes.ViewAluno;
 import control.PedidoController;
 import control.MenuControll;
+import control.PagamentoController;
 import interfaces.Cardapio;
 import interfaces.ListarEstoque;
 import interfaces.MostrarMenu;
 import model.Administrativo;
 import model.Atendente;
 import model.Funcionarios;
-import model.Clientes.ViewAluno;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -20,6 +20,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
     static final int OPCAO_FAZER_PEDIDO = 3;
     static final int OPCAO_EMITIR_COMPROVANTE = 4;
     static final int OPCAO_EXIBIR_ALUNOS = 5;
+    static final int OPCAO_PAGAMENTO_ALUNOS = 6; // wm adicionei essa funcao ao menu
     static final int OPCAO_SAIR = 0;
 
     // menu definido na interface
@@ -31,6 +32,7 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         System.err.println("[3] Fazer pedido");
         System.out.println("[4] Emitir Comprovante");
         System.out.println("[5] Exibir Alunos com conta na cantina");
+        System.out.println("[6] Pagamento para alunos com conta na cantina");
         System.out.println("[0] Sair");
 
     }
@@ -49,14 +51,15 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
 
     public static void main(String[] args) {
         ArrayList<Funcionarios> funcionarios = new ArrayList<>();
-
         // Criando Arraylist do tipo Produtos com nome produtos
         Scanner scanner = new Scanner(System.in);
         EstoqueCardapio estoqueCardapio = new EstoqueCardapio();
         PedidoController pedidoController = new PedidoController(estoqueCardapio);
-        // Instanciando o controle do menu
-        MenuControll menuControll = new MenuControll();
-        ViewAluno viewAluno = new ViewAluno();
+        ViewAluno viewAluno = new ViewAluno();  
+        PagamentoController pagamentoController = new PagamentoController(estoqueCardapio, viewAluno.getAlunos());
+       
+       // Instanciando o controle do menu
+       MenuControll menuControll = new MenuControll();
 
         // Funcionarios
         Administrativo adm = new Administrativo("Wesley", 6000, 1, "ADM");
@@ -96,6 +99,13 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                         break;
                     case OPCAO_EXIBIR_ALUNOS:
                         viewAluno.exibirAlunos();
+                        break;
+                    case OPCAO_PAGAMENTO_ALUNOS:
+                        System.out.print("Digite o RA de aluno: ");
+                        int ra = scanner.nextInt();
+                        System.out.print("Digite o ID do produto: ");
+                        int idProdut = scanner.nextInt();
+                        pagamentoController.realizarCompra(ra, idProdut);
                         break;
                     case OPCAO_SAIR:
                         System.out.println("Saindo...");

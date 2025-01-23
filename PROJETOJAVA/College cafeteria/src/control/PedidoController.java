@@ -1,8 +1,3 @@
-/*package control;
-
-public class PedidoController {
-    
-}*/
 package control;
 
 import java.util.Scanner;
@@ -36,7 +31,6 @@ public class PedidoController {
         System.out.println("Digite o ID do produto que deseja comprar: ");
         int idProduto = scanner.nextInt();
 
-        // Busca o produto pelo ID
         Produtos produtoSelecionado = null;
         for (Produtos produto : estoqueCardapio.getProdutos()) {
             if (produto.getID() == idProduto) {
@@ -46,7 +40,7 @@ public class PedidoController {
         }
 
         if (produtoSelecionado == null) {
-            System.out.println("Produto não encontrado.");
+            System.out.println("Produto nao encontrado.");
             return;
         }
 
@@ -57,7 +51,7 @@ public class PedidoController {
 
         if (quantidade > produtoSelecionado.getEstoque()) {
             System.out.println("Estoque insuficiente.");
-        } else {
+        } else  {
             produtoSelecionado.setEstoque(produtoSelecionado.getEstoque() - quantidade);
             double total = quantidade * produtoSelecionado.getPreco();
             System.out.println("Pedido realizado com sucesso!");

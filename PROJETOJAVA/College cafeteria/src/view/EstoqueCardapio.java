@@ -37,5 +37,15 @@ public class EstoqueCardapio implements ListarEstoque {
     public ArrayList<Produtos> getProdutos() {
         return produtos;
     }
+
+
+public Produtos getProdutoPorId(int idProduto) {
+    for (Produtos produto : produtos) {
+        if (produto.getID() == idProduto) {
+            return produto;
+        }
+    }
+    return null; // nao foi encontrado
 }
 
+}
