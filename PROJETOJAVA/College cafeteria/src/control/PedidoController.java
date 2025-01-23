@@ -9,7 +9,7 @@ import java.util.Scanner;
 import model.Produtos;
 import view.EstoqueCardapio;
 
-public class PedidoController {
+public class PedidoController{
     private EstoqueCardapio estoqueCardapio;
 
     // Construtor para receber o estoque

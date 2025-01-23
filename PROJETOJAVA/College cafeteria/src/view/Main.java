@@ -2,7 +2,6 @@ package view;
 
 //Importando as classes e as interfaces
 import control.FuncionariosController;
-import control.CardapioController;
 import control.PagamentoController;
 import control.PedidoController;
 import interfaces.Cardapio;
@@ -71,30 +70,42 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
         funcionarios.add(a1);
         funcionarios.add(a2);
 
-        int opcao = 0;
-
         // Fazendo instancia de do main para acessar o menu
         Main main = new Main();
+
+        // Variaveis globais
+        int opcao = 0;
+        boolean AberturaCantina = false;
+        
 
         System.out.println("--- Bem vindo a Cantina IFSP ---");
         while (true) {
             main.menu();
             opcao = scanner.nextInt();
+
             // consumir a linha em branco que fica no buffer
             scanner.nextLine();
             do {
-                switch (opcao) {
+                switch (opcao) {            
                     case OPCAO_ABRIR_CANTINA:
+                    //verificando se cantina já está aberta
+                    if(AberturaCantina == true){
+                        System.out.println("Cantina já esta aberta.");
+                        break;
+
+                    }
                         String condicao;
+                        //ID DO FUNCIONARIO
+                        int IDADM = 0;
+                        //Confirmando se a pessoa é funcionario
                         System.out.println("Você é Atendente ou Administrativo? [sim] ou [não]");
                         condicao = scanner.nextLine();
+                        // Verificar se o ID corresponde a algum funcionário
+                        boolean encontrado = false;
 
                         if ("sim".equalsIgnoreCase(condicao)) {
                             System.out.println("Digite seu ID de Funcionário:");
-                            int IDADM = scanner.nextInt();
-
-                            // Verificar se o ID corresponde a algum funcionário
-                            boolean encontrado = false;
+                            IDADM = scanner.nextInt();
 
                             // Percorrer a lista de funcionários
                             for (Funcionarios func : funcionarios) {
@@ -112,26 +123,21 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                                     String horaFormatada = agora.format(formatoHora);
 
                                     System.out.println("Cantina aberta hoje, dia: " + hoje + " Hora: " + horaFormatada);
-                                    System.out.println();
+                                    AberturaCantina = true;
 
                                     // Marca como encontrado e sai do loop
                                     encontrado = true;
                                     break; // Aqui sai do loop imediatamente após encontrar o funcionário
-
-                                }  // Se não encontrou o funcionário, exibe a mensagem
+                                }
+                                // Se não encontrou o funcionário, exibe a mensagem
                                 else if (!encontrado) {
                                     System.out.println("Funcionário não encontrado com o ID informado.");
+                                    System.out.println("Somente Funcionários podem abrir a cantina.");
+                                    break;
                                 }
-    
-                             {
-                                System.out.println("Somente Funcionários podem abrir a cantina.");
-                            }
-                            break;
                             }
                         }
-
-                           
-
+                        break;
                     case OPCAO_EXIBIR_CARDAPIO:
                         estoqueCardapio.MostrarEstoque();
                         break;
@@ -146,8 +152,8 @@ public class Main implements MostrarMenu, Cardapio, ListarEstoque {
                         System.out.println("Opção inválida!");
                         break;
                 }
-            } while (opcao != 0);
+            } while (opcao == 0);
         }
-}
+    }
 
 }
