@@ -24,6 +24,10 @@ public class MenuControll {
         return false; // Retorna falso se o funcionário não for encontrado
     }
     public void abrirCantina(Scanner scanner, ArrayList<Funcionarios> funcionarios) {
+        if(AberturaCantina == true){
+            System.out.println("A cantina já esta aberta");
+            return;
+        }
         System.out.println("Você é Atendente ou Administrativo? [sim] ou [não]");
         String condicao = scanner.nextLine();
         if ("sim".equalsIgnoreCase(condicao)) {
