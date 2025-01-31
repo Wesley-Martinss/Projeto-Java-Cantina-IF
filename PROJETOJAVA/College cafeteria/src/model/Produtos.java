@@ -5,16 +5,20 @@ public class Produtos {
     private String descricao;
     private double preco;
     private int estoque;
+    private int QuantidadeVendida = 0;
 
     // Construtor para inicializar o produto
-    public Produtos(int id, String descricao, double preco, int estoque) {
+    public Produtos(int id, String descricao, double preco, int estoque, int QuantidadeVendida) {
         this.id = id;
         this.descricao = descricao;
         this.preco = preco;
         this.estoque = estoque;
+        this.QuantidadeVendida = QuantidadeVendida;
     }
 
-    // Métodos getters e setters
+    // Get e set
+    // get retorna
+    // set modifica
     public int getID() {
         return id;
     }
@@ -47,10 +51,22 @@ public class Produtos {
         this.estoque = estoque;
     }
 
-    // Método para exibir as informações do produto
+    public int getQuantidadeVendida() {
+        return QuantidadeVendida;
+    }
+
+    public void setQuantidadeVendida(int QuantidadeVendida) {
+        this.QuantidadeVendida = QuantidadeVendida;
+    }
+
+    // Metodo para incrementar a quantidadeVendida
+    public void incrementarQuantidadeVendida() {
+        this.QuantidadeVendida++;
+    }
+
+    // Metodo para exibir as informações do produto
     @Override
     public String toString() {
         return "ID: " + id + "\nDescrição: " + descricao + "\nPreço: " + preco + " $" + "\nEstoque: " + estoque;
     }
 }
-

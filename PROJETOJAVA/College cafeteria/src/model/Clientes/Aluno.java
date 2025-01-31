@@ -41,7 +41,7 @@ public class Aluno {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return "Alunio: " + nome + "\nRA(REGISTRO ALUNO): " + ra  + "\nSaldo Aluno: " + saldo;
+        return "\nAluno: " + nome + "\nRA(REGISTRO ALUNO): " + ra  + "\nSaldo Aluno: " + saldo + "$\n";
     }
     
 

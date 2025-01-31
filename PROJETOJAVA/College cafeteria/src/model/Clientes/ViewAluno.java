@@ -9,7 +9,7 @@ public class ViewAluno {
     // Construtor da classe ViewAluno
     public ViewAluno() {
         // Adicionando alunos diretamente à lista
-        Aluno a1 = new Aluno(123, "Raul", 100);
+        Aluno a1 = new Aluno(123, "Raul", 10);
         Aluno a2 = new Aluno(124, "Ana", 85);
         Aluno a3 = new Aluno(125, "Carlos", 92);
         Aluno a4 = new Aluno(126, "Fernanda", 78);
