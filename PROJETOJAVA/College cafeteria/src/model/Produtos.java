@@ -67,6 +67,6 @@ public class Produtos {
     // Metodo para exibir as informações do produto
     @Override
     public String toString() {
-        return "ID: " + id + "\nDescrição: " + descricao + "\nPreço: " + preco + " $" + "\nEstoque: " + estoque;
+        return "ID: " + id + "\nDescrição: " + descricao + "\nPreço: " + preco + " $" + "\nEstoque: " + estoque +"\n";
     }
 }

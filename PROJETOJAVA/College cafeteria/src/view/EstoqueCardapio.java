@@ -1,15 +1,13 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import interfaces.ListarEstoque;
 import model.Produtos;
 
 public class EstoqueCardapio implements ListarEstoque {
-    public static ArrayList<Produtos> produtos; // Lista de produtos
+    public static ArrayList<Produtos> produtos;
 
-    // Construtor para inicializar a lista de produtos
     public EstoqueCardapio() {
         produtos = new ArrayList<>();
         produtos.add(new Produtos(1, "Salgado Hamburguinho", 3.20, 10, 0));
@@ -24,32 +22,37 @@ public class EstoqueCardapio implements ListarEstoque {
         produtos.add(new Produtos(10, "Salgado de Queijo", 2.80, 10, 0));
     }
 
-    public void AdicionarNovoAluno(Scanner scanner){
-        
-    }
-
     @Override
     public void MostrarEstoque() {
         System.out.println("Produtos disponíveis na Cantina:");
         for (Produtos produto : produtos) {
-            System.out.println();
             System.out.println(produto);
         }
     }
 
-    // Método para retornar a lista de produtos
+    // Método para remover um produto do estoque
+    public void removerProduto(int idProduto) {
+        Produtos produto = getProdutoPorId(idProduto);
+        if (produto != null) {
+            produtos.remove(produto);
+            System.out.println("Produto removido com sucesso: " + produto.getDescricao());
+        } else {
+            System.out.println("Produto não encontrado.");
+        }
+    }
+
+    // Get retornar produtos
     public ArrayList<Produtos> getProdutos() {
         return produtos;
     }
 
-
-public Produtos getProdutoPorId(int idProduto) {
-    for (Produtos produto : produtos) {
-        if (produto.getID() == idProduto) {
-            return produto;
+    // Método pra procurar produto por id
+    public Produtos getProdutoPorId(int idProduto) {
+        for (Produtos produto : produtos) {
+            if (produto.getID() == idProduto) {
+                return produto;
+            }
         }
+        return null;
     }
-    return null; // nao foi encontrado
-}
-
 }
