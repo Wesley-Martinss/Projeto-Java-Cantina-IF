@@ -179,7 +179,7 @@ public class PedidoController implements ListarVendas {
     }
 
     // Metodo para buscar o produto pelo ID
-    private Produtos buscarProdutoPorId(int idProduto) {
+    public  Produtos  buscarProdutoPorId(int idProduto) {
         for (Produtos produto : estoqueCardapio.getProdutos()) {
             if (produto.getID() == idProduto) {
                 return produto;
