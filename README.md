@@ -21,13 +21,14 @@ O projeto **Cantina IF** é um sistema simples que está sendo desenvolvido em *
 - Registro e processamento de **pagamentos** (dinheiro e cartão)
 - **Controle de estoque**
 - **Gestão de funcionários** (cadastro e autenticação)
+- **Manipulação de datas**
 
 ---
 
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Java 8 ou superior
-- **Ambiente de Desenvolvimento**: Qualquer IDE que suporte Java (ex: IntelliJ IDEA, Eclipse)
+- **Ambiente de Desenvolvimento**: Qualquer IDE que suporte Java (ex: IntelliJ IDEA, Eclipse,Vscode)
 
 ---
 
@@ -49,6 +50,7 @@ O projeto **Cantina IF** é um sistema simples que está sendo desenvolvido em *
 - **model**: Contém as classes de dados (produtos, pedidos, etc.)
 - **control**: Lógica de controle do sistema
 - **view**: Interface com o usuário no console
+- **Interfaces**: Com assinatura dos Métodos
 
 ---
 
