@@ -4,10 +4,15 @@ import control.PedidoController;
 import control.MenuControll;
 import interfaces.MostrarMenu;
 import model.CadastrarFuncionarios.CadastroFuncionarios;
+import model.Clientes.Aluno;
 import model.Clientes.ViewAluno;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import model.CadastrarAlunos.CadastroAluno;
 import model.CadastrarProdutos;
+import model.Funcionarios;
 
 public class Main implements MostrarMenu {
     static final int OPCAO_ABRIR_CANTINA = 1;
@@ -20,6 +25,8 @@ public class Main implements MostrarMenu {
     static final int OPCAO_CADASTRAR_PRODUTOS = 8;
     static final int OPCAO_EXIBIR_ESTOQUE = 9;
     static final int OPCAO_REMOVER_E_EDITARPRODUTO = 10;
+    static final int OPCAO_FECHAR_CANTINA = 11;
+    static final int OPCAO_EXIBIR_LISTA_FUNCIONARIOS_ADM_ATENDENTE = 12;
     static final int OPCAO_SAIR = 0;
 
     // menu definido na interface
@@ -39,6 +46,9 @@ public class Main implements MostrarMenu {
         System.out.println("\u001B[35m[8] Cadastrar Produtos\u001B[0m");
         System.out.println("\u001B[36m[9] Exibir estoque\u001B[0m");
         System.out.println("\u001B[36m[10] Editar / Remover produtos\u001B[0m");
+        System.out.println("\u001B[35m[11] Fechar Cantina\u001B[0m");
+        System.out.println("\u001B[32m[12] Exibir lista de funcionario\u001B[0m");
+
         System.out.println("\u001B[33m[0] Sair\u001B[0m");
     }
 
@@ -60,6 +70,8 @@ public class Main implements MostrarMenu {
 
         // Instanciando o controle do menu
         MenuControll menuControll = new MenuControll();
+
+        // Instânciando lista
 
         // Fazendo instancia de do main para acessar o menu
         Main main = new Main();
@@ -119,18 +131,37 @@ public class Main implements MostrarMenu {
                     case OPCAO_REMOVER_E_EDITARPRODUTO:
                         String admResposta = "sim";
                         String resposta;
-                        int idAdministrador;
-                        System.out.println("Você é administrador? [Sim] [Nao]");
+                        System.out.println("Você é Administrador ou funcionario? [Sim] [Nao]");
                         resposta = scanner.nextLine();
+
+                        // Verificação de administrador
                         if (resposta.equalsIgnoreCase(admResposta)) {
                             System.out.println("Digite seu ID de Administrador: ");
-                            idAdministrador = scanner.nextInt();
-                            scanner.nextLine();
+                            int idAdministrador = scanner.nextInt(); // Lê o ID do administrador
+                            scanner.nextLine(); // Consome a quebra de linha após a leitura do inteiro
 
-                            if (menuControll.verificarAdministrador(idAdministrador)) {
+                            boolean verificarFuncionario = false; // Flag para verificar se o administrador foi
+                                                                  // encontrado
+
+                            // For percorrer sobre a lista e achar funcionario
+                            for (Funcionarios func : CadastroFuncionarios.Cadastrofuncionario) { // Usando a lista do
+                                                                                                 // CadastroFuncionarios
+                                System.out.println("Verificando ID: " + func.getID()); // Debugg Verifica os IDs dos
+                                                                                       // funcionários
+                                if (idAdministrador == func.getID()) { // Verifica se o ID do administrador corresponde
+                                                                       // ao ID de um funcionário
+                                    verificarFuncionario = true;
+                                    System.out.println("Funcionário encontrado: " + func.getNome());
+                                    break; // Break quando encontrar funcionario
+                                }
+                            }
+
+                            // Se o administrador for encontrado, permite editar ou remover produtos
+                            if (verificarFuncionario == true) {
                                 System.out.println("O que você gostaria de fazer?");
                                 System.out.println("[1] Editar Produto");
                                 System.out.println("[2] Remover Produto");
+                                System.out.println("[0] Cancelar");
                                 System.out.print("Escolha uma opção: ");
                                 int opcaoProduto = scanner.nextInt();
                                 scanner.nextLine();
@@ -139,26 +170,42 @@ public class Main implements MostrarMenu {
                                     case 1:
                                         System.out.println("Digite o ID do produto que deseja editar: ");
                                         int idProdutoEditar = scanner.nextInt();
-                                        scanner.nextLine();
+                                        scanner.nextLine(); // Consome \n
                                         menuControll.editarProduto(scanner, idProdutoEditar, estoqueCardapio);
                                         break;
 
                                     case 2:
                                         System.out.println("Digite o ID do produto que deseja remover: ");
                                         int idProdutoRemover = scanner.nextInt();
-                                        scanner.nextLine();
+                                        scanner.nextLine(); // Consome \n
                                         menuControll.removerProduto(idProdutoRemover, estoqueCardapio);
-                                        ;
                                         break;
-
+                                    case 0:
+                                        System.out.println("Operação cancelada");
+                                        break;
                                     default:
                                         System.out.println("Opção inválida!");
                                         break;
                                 }
+                            } else {
+                                System.out.println("Administrador não encontrado ou ID inválido.");
                             }
                         }
                         break;
 
+                    case OPCAO_FECHAR_CANTINA:
+                        // Tendo acesso a váriavel Abertura cantina porque foi definida como public
+                        // static
+                        if (menuControll.AberturaCantina == false) {
+                            System.out.println("A cantina ja está fechada");
+                            break;
+                        }
+                        System.out.println("Cantina fechada.");
+                        menuControll.AberturaCantina = false;
+                        break;
+                    case OPCAO_EXIBIR_LISTA_FUNCIONARIOS_ADM_ATENDENTE:
+                        CadastroFuncionarios.exibirFuncionarios(CadastroFuncionarios.Cadastrofuncionario);
+                        break;
                     case OPCAO_SAIR:
                         System.out.println("Saindo...");
                         return;

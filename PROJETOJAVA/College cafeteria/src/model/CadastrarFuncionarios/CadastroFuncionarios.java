@@ -79,6 +79,14 @@ public class CadastroFuncionarios {
         System.out.println("Funcionário cadastrado com sucesso!");
     }
 
+    //Exibir lista de funcionarios
+    public static void exibirFuncionarios(ArrayList<Funcionarios> Cadastrofuncionario){
+        System.out.println("Lista de funcionarios: ");
+        for(Funcionarios funTemp : Cadastrofuncionario){
+            System.out.println();
+            System.out.println(funTemp);
+        }
+    }
     // Método para verificar duplicidade de ID
     public static boolean VerificarDuplicidadeID(int idFuncionario) {
         for (Funcionarios funcionario : Cadastrofuncionario) {
