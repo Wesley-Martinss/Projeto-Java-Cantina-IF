@@ -140,7 +140,7 @@ public class Main implements MostrarMenu {
                             int idAdministrador = scanner.nextInt(); // Lê o ID do administrador
                             scanner.nextLine(); // Consome a quebra de linha após a leitura do inteiro
 
-                            boolean verificarFuncionario = false; // Flag para verificar se o administrador foi
+                            boolean verificarFuncionario = false; // verificar se o administrador foi
                                                                   // encontrado
 
                             // For percorrer sobre a lista e achar funcionario
